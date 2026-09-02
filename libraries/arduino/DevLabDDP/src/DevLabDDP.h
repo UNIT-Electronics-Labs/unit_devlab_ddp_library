@@ -12,6 +12,7 @@ constexpr uint16_t DEVICE_JOYSTICK = 0x0101U;
 constexpr uint16_t DEVICE_TEMT6000 = 0x0102U;
 constexpr uint16_t DEVICE_DS18B20  = 0x0103U;
 constexpr uint16_t DEVICE_PIR      = 0x0104U;
+constexpr uint16_t DEVICE_HX0805   = 0x0105U;
 constexpr uint16_t DEVICE_WS12XX_NEO = 0x0400U;
 
 struct DeviceInfo {
@@ -141,6 +142,7 @@ inline const char *deviceName(uint16_t deviceId) {
     case DEVICE_TEMT6000: return "temt6000";
     case DEVICE_DS18B20:  return "ds18b20";
     case DEVICE_PIR:      return "pir";
+    case DEVICE_HX0805:   return "hx0805-vibration";
     case DEVICE_WS12XX_NEO: return "ws12xx-neopixel";
     default:              return "unknown";
   }
