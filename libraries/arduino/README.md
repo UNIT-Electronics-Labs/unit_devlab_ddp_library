@@ -1,7 +1,7 @@
 # Arduino DDP master
 
 `DevLabDDP` is the shared and self-contained master library for the joystick,
-TEMT6000 and DS18B20 admin sketches. Its authoritative command registry is
+TEMT6000, GT36537 and DS18B20 admin sketches. Its authoritative command registry is
 packaged as `DevLabDDP/src/DevLabDDPProtocol.h`; installed copies do not
 depend on the parent repository.
 
