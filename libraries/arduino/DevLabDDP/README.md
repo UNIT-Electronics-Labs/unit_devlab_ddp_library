@@ -35,6 +35,7 @@ para ESP32 y RP2040/RP2350.
 | `DEVICE_PIR` | `0x0104` |
 | `DEVICE_HX0805` | `0x0105` |
 | `DEVICE_GT36537` | `0x0106` |
+| `DEVICE_DPAD` | `0x0107` |
 | `DEVICE_WS12XX_NEO` | `0x0400` |
 
 Licencia y condiciones de publicación: consulte el repositorio del proyecto.
