@@ -17,6 +17,13 @@ constexpr uint16_t DEVICE_GT36537  = 0x0106U;
 constexpr uint16_t DEVICE_DPAD     = 0x0107U;
 constexpr uint16_t DEVICE_WS12XX_NEO = 0x0400U;
 
+/* D-Pad button masks. Combine with | and test individual buttons with &. */
+constexpr uint8_t DPAD_NONE = 0U;
+constexpr uint8_t DPAD_S1 = 1U << 0;
+constexpr uint8_t DPAD_S2 = 1U << 1;
+constexpr uint8_t DPAD_S3 = 1U << 2;
+constexpr uint8_t DPAD_S4 = 1U << 3;
+
 struct DeviceInfo {
   uint16_t deviceId = 0;
   uint8_t firmwareMajor = 0;
@@ -123,6 +130,18 @@ class Master {
         !readCommand(address, command, bytes, 2U, 30U)) return false;
     value = (uint16_t)bytes[0] | ((uint16_t)bytes[1] << 8);
     return true;
+  }
+
+  /* Current D-Pad state: 0..15, or -1 on I2C/invalid-frame errors.
+   * Identify the D-Pad once before polling; each call only reads its buttons.
+   * This synchronous read includes processingDelayMs and does not print,
+   * cache states, detect edges or require releasing buttons first. */
+  int16_t readButtons(uint8_t address, uint16_t processingDelayMs = 2U) {
+    uint8_t buttons = 0;
+    constexpr uint8_t command = 0x80U;  // D-Pad button snapshot.
+    if (!readCommand(address, command, &buttons, 1U, processingDelayMs) ||
+        (buttons & 0xF0U) != 0U) return -1;
+    return buttons;
   }
 
   bool readGpio0(uint8_t address, bool &value) {
