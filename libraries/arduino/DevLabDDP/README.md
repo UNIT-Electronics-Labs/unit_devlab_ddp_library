@@ -57,13 +57,13 @@ resultado en `int` o `int16_t` y compruebe el error antes de examinar los bits.
 Un error no se convierte en cero ni conserva un estado anterior.
 
 Configure `Wire` con los pines de su placa y valide el módulo con
-`dpad.matchesExpectedDevice(0x20)` en `setup()`. Después puede consultar:
+`dpad.matchesExpectedDevice(0x27)` en `setup()`. Después puede consultar:
 
 ```cpp
 DevLabDDP::Master dpad(Wire, DevLabDDP::DEVICE_DPAD);
 
 void loop() {
-  int buttons = dpad.readButtons(0x20);
+  int buttons = dpad.readButtons(0x27);
   if (buttons < 0) {
     // Handle the I2C error here.
     return;
